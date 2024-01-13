@@ -3,6 +3,7 @@ use std::env;
 mod borrow_checker;
 mod types;
 mod traits;
+mod destructors;
 
 fn main() -> Result<(), String> {
     let args = env::args().collect::<Vec<String>>();
@@ -17,6 +18,7 @@ fn main() -> Result<(), String> {
 fn execute(arg: &str) -> Result<(), String> {
     match arg {
         "--borrow-checker" => borrow_checker::entrypoint(),
+        "--drop" => destructors::entrypoint(),
         "--types" => types::entrypoint(),
         "--traits" => traits::entrypoint(),
         _ => return Err("unknown workflow".into())
